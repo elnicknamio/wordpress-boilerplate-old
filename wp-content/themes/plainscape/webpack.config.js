@@ -52,12 +52,12 @@ module.exports = {
 					},
 					'img-loader'
 				],
-				include: path.join(__dirname, './assets')
+				include: path.join(__dirname, './assets/img')
 			},
 			{
 				test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
 				loader: 'url-loader',
-				include: path.join(__dirname, './assets')
+				include: path.join(__dirname, './assets/fonts')
 			}
 
 		]
