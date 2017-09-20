@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const extractTextPlugin = require('extract-text-webpack-plugin')
+const browserSyncPlugin = require('browser-sync-webpack-plugin')
 //const offlinePlugin = require('offline-plugin'); // add Service Worker and AppCache support
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -8,11 +9,15 @@ const processCss = isProduction ? '?minimize!postcss-loader' : '';
 
 module.exports = {
 
-	entry: "./assets/js/main.js",
+	entry: path.resolve(__dirname, "assets/js/main.js"),
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: "[name].js"
+	},
+
+	stats: {
+		children: false
 	},
 
 	module: {
@@ -70,6 +75,13 @@ module.exports = {
 			filename: '../style.css',
 			allChunks: true,
 			//disable: !isProduction // disbled in development env
+		}),
+
+		new browserSyncPlugin({
+			host: 'localhost',
+			port: 3000,
+			//server: { baseDir: [ path.join(__dirname, '../../../') ] }
+			proxy: 'http://localhost/wp-boilerplate-pro/'
 		})
 
     ],
