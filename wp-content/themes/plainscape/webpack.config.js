@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const extractTextPlugin = require('extract-text-webpack-plugin')
 const browserSyncPlugin = require('browser-sync-webpack-plugin')
-//const offlinePlugin = require('offline-plugin'); // add Service Worker and AppCache support
+// const offlinePlugin = require('offline-plugin'); // add Service Worker and AppCache support
 
 const isProduction = process.env.NODE_ENV === 'production'
 const processCss = isProduction ? '?minimize!postcss-loader' : '';
@@ -19,6 +19,10 @@ module.exports = {
 
 	stats: {
 		children: false
+	},
+
+	watchOptions: {
+		ignored: /node_modules/
 	},
 
 	module: {
@@ -65,12 +69,13 @@ module.exports = {
 
 	plugins: [
 
-		/* add Service Worker and AppCache support */
-		//new offlinePlugin(),
+		// add Service Worker and AppCache support
+		// new offlinePlugin(),
 
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor']
-        }),
+		// creating chunk files */
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor'
+        // }),
 
 		new extractTextPlugin({
 			filename: '../style.css',
@@ -81,7 +86,8 @@ module.exports = {
 		new browserSyncPlugin({
 			host: 'localhost',
 			port: 3000,
-			proxy: `http://localhost/${themeDirectory}/`
+			proxy: `http://localhost/${themeDirectory}/`,
+			files: "./**/*.php"
 		})
 
     ],

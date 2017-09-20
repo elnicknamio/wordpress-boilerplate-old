@@ -1,14 +1,24 @@
 /*!
- * Theme Name: _plainscape_
- * Theme URI: http://joelpatti.de
- * Description: A simple but powerful wordpress boilerplate theme.
- * Author: <a href="http://joelpatti.de">Joel Patti</a>
- * Version: 1.0
- */
+* Theme Name: _plainscape_
+* Theme URI: http://joelpatti.de
+* Description: A simple but powerful wordpress boilerplate theme.
+* Author: <a href="http://joelpatti.de">Joel Patti</a>
+* Version: 1.0
+*/
+
+@import 'normalize';
+@import 'variables';
+@import 'accessibility';
+@import 'bootstrap';
+
+/* Global
+   ========================================================================== */
 
 body {
-	background-color: yellow;
-	display: flex;
-	text-align: center;
-	color: #333;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+main {
+	display: block; // fix IE9-11
 }
