@@ -6,6 +6,7 @@ const browserSyncPlugin = require('browser-sync-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
 const processCss = isProduction ? '?minimize!postcss-loader' : '';
+const themeDirectory = path.resolve(__dirname + '/../../../').split(path.sep).pop();
 
 module.exports = {
 
@@ -80,8 +81,7 @@ module.exports = {
 		new browserSyncPlugin({
 			host: 'localhost',
 			port: 3000,
-			//server: { baseDir: [ path.join(__dirname, '../../../') ] }
-			proxy: 'http://localhost/wp-boilerplate-pro/'
+			proxy: `http://localhost/${themeDirectory}/`
 		})
 
     ],
