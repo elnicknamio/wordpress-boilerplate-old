@@ -87,7 +87,10 @@ module.exports = {
 			host: 'localhost',
 			port: 3000,
 			proxy: `http://localhost/${themeDirectory}/`,
-			files: "./**/*.php"
+			files: path.join(__dirname, './**/*.php'),
+			snippetOptions: {
+				ignorePaths: ["wp-admin/**"]
+			}
 		})
 
     ],
