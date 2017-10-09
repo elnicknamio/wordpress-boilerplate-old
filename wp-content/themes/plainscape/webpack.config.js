@@ -14,6 +14,7 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
+		publicPath: 'dist/',
 		filename: "[name].js"
 	},
 
@@ -51,7 +52,8 @@ module.exports = {
 					{
 						loader: 'file-loader',
 						options: {
-							name: '[name].[ext]?[hash]'
+							name: '[name].[ext]?[hash]',
+							outputPath: 'img/'
 						}
 					},
 					'img-loader'
