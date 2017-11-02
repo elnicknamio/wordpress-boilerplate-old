@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const extractTextPlugin = require('extract-text-webpack-plugin')
 const browserSyncPlugin = require('browser-sync-webpack-plugin')
+const cleanWebpackPlugin = require('clean-webpack-plugin')
 // const offlinePlugin = require('offline-plugin'); // add Service Worker and AppCache support
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -31,12 +32,12 @@ module.exports = {
 			{
 				test: /\.html$/,
 				loader: 'raw-loader',
-				include: path.join(__dirname, './assets')
+				include: path.resolve(__dirname, './assets')
 			},
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				include: path.join(__dirname, './assets'),
+				include: path.resolve(__dirname, './assets'),
 			},
 			{
 				test: /\.(css|scss|sass)$/,
@@ -44,7 +45,12 @@ module.exports = {
 					fallback: 'style-loader',
 					use: `css-loader${processCss}!sass-loader`,
 				}),
-				include: path.join(__dirname, './assets')
+				include: path.resolve(__dirname, './assets')
+			},
+			{
+				test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+				loader: 'url-loader',
+				include: path.resolve(__dirname, './assets/fonts')
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/,
@@ -58,12 +64,7 @@ module.exports = {
 					},
 					'img-loader'
 				],
-				include: path.join(__dirname, './assets/img')
-			},
-			{
-				test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
-				loader: 'url-loader',
-				include: path.join(__dirname, './assets/fonts')
+				include: path.resolve(__dirname, './assets/img')
 			}
 
 		]
@@ -79,6 +80,8 @@ module.exports = {
         //     name: 'vendor'
         // }),
 
+        new cleanWebpackPlugin(['dist'], { watch: false }),
+
 		new extractTextPlugin({
 			filename: '../style.css',
 			allChunks: true,
@@ -89,7 +92,7 @@ module.exports = {
 			host: 'localhost',
 			port: 3000,
 			proxy: `http://localhost/${themeDirectory}/`,
-			files: path.join(__dirname, './**/*.php'),
+			files: path.resolve(__dirname, './**/*.php'),
 			snippetOptions: {
 				ignorePaths: ["wp-admin/**"]
 			}
@@ -98,7 +101,7 @@ module.exports = {
     ],
 
 	devServer: {
-		contentBase: path.join(__dirname, '/'),
+		contentBase: path.resolve(__dirname, '/'),
 		inline: true,
 		hot: true,
 		historyApiFallback: true,
