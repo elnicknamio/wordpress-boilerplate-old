@@ -3,10 +3,10 @@
 
 <head>
 
-	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title><?php if (is_front_page()) { bloginfo('name'); echo " &raquo; "; bloginfo('description'); } else { wp_title(''); echo ' &laquo; '; bloginfo('name'); } ?></title>
+	<title><?php if ( is_front_page() ) { bloginfo( 'name' ); echo " &raquo; "; bloginfo( 'description' ); } else { wp_title( '' ); echo ' &laquo; '; bloginfo( 'name' ); } ?></title>
 
 	<link rel="preload" href="<?= DIST ?>/critical.min.css" as="style" onload="this.rel='stylesheet'">
 	<noscript><link rel="stylesheet" href="<?= DIST ?>/critical.min.css"></noscript>

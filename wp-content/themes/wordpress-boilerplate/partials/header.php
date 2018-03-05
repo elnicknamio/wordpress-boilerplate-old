@@ -1,6 +1,6 @@
 <header class="header" role="banner">
 
-	<?php if (has_nav_menu('main')) : ?>
+	<?php if ( has_nav_menu( 'main' ) ) : ?>
 
 		<button class="menu-toggle" aria-controls="main-menu" aria-expanded="false"></button>
 
