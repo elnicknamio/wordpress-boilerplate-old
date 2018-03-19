@@ -8,13 +8,17 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
+// Grid settings overwrite
+// $container-large-desktop: (1300px + $grid-gutter-width);
+// $container-lg: $container-large-desktop;
+
 // Reset and dependencies
 // @import "bootstrap/normalize";
 // @import "bootstrap/print";
 // @import "bootstrap/glyphicons";
 
 // Core CSS
-// @import "bootstrap/scaffolding";
+@import "bootstrap/scaffolding";
 // @import "bootstrap/type";
 // @import "bootstrap/code";
 @import "bootstrap/grid";
